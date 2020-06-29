@@ -29,7 +29,7 @@ public class TestService {
 	
 	public void test(String bucket) {
 		S3Client s3Client = S3Client.builder()
-									.credentialsProvider(ProfileCredentialsProvider.create("KEAPPMIG"))
+									.credentialsProvider(ProfileCredentialsProvider.create("default"))
 									.region(Region.AP_NORTHEAST_2)
 									.overrideConfiguration(ClientOverrideConfiguration.builder()
 											.addExecutionInterceptor(new TracingInterceptor())
