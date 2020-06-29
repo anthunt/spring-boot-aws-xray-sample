@@ -3,12 +3,14 @@ package com.anthunt.aws.spring.boot.xray.config;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.lang.reflect.Proxy;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.ParameterMetaData;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.HashMap;
@@ -18,6 +20,7 @@ import java.util.Optional;
 import com.amazonaws.xray.AWSXRay;
 import com.amazonaws.xray.entities.Namespace;
 import com.amazonaws.xray.entities.Subsegment;
+import com.zaxxer.hikari.pool.HikariProxyPreparedStatement;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -162,11 +165,11 @@ public class AWSXRayTracingStatement {
                 sqlParams.put(DATABASE_TYPE, dbmetadata.getDatabaseProductName());
                 sqlParams.put(DATABASE_VERSION, dbmetadata.getDatabaseProductVersion());
                 subsegment.putAllSql(sqlParams);
-                                
+                
                 Map<String, Map<String, Object>> metadata = new HashMap<>();
                 Map<String, Object> queryInfo = new HashMap<>();
-                queryInfo.put(QUERY, this.sql);
-                queryInfo.put(PARAMS, Optional.ofNullable(args).orElseGet(()->new Object[0]));
+                queryInfo.put(QUERY, delegate.toString());
+//                queryInfo.put(PARAMS, Optional.ofNullable(args).orElseGet(()->new Object[0]));
                 queryInfo.put(METHOD, method.getName());
                 metadata.put("queryInfo", queryInfo);
                 subsegment.setMetadata(metadata);
