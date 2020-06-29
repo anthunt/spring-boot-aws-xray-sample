@@ -60,6 +60,8 @@ public class AWSXRayInspector extends AbstractXRayInterceptor {
 		log.trace("aws xray tracing method - {}.{}", pjp.getSignature().getDeclaringTypeName(), pjp.getSignature().getName());
 		
 		Map<String, Map<String, Object>> metadata = super.generateMetadata(pjp, subsegment);
+		metadata.get("ClassInfo").put("Class", pjp.getSignature().getDeclaringTypeName());
+		
 		Map<String, Object> argumentsInfo = new HashMap<>();
 		
 		Arrays.stream(pjp.getArgs())
