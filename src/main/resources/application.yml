@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: SpringBootXRayDemoApplication  
+  h2:
+    console:
+      enabled: false 
+      path: /console
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test
+    username: test
+    password: 1234
+
+logging:
+  file: ./log/appLog/${spring.application.name}.log
+  pattern:
+    file: "%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %X{AWS-XRAY-TRACE-ID} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+    console: "%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %X{AWS-XRAY-TRACE-ID} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+  level:
+    com.amazonaws.xray: DEBUG
+    com.anthunt.aws.spring.boot.xray: DEBUG
+    org.springframework.cloud.openfeign: ERROR
+    feign.Logger: ERROR
+    org.apache.http: ERROR
+  
+feign:
+  httpclient:
+    enabled: true
+  client:
+    config:
+      default:
+       connectTimeout: 5000
+       readTimeout: 5000
+       loggerLevel: BASIC
+  compression:
+    response:
+      enabled: true
+    request:
+      enabled: true
+
+    
+ 

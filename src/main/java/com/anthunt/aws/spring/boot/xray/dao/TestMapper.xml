@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.anthunt.aws.spring.boot.xray.dao.TestMapper">
+
+    <select id="count" resultType="int" parameterType="int">
+        SELECT 2
+          FROM DUAL
+         WHERE 1 = #{idx}
+    </select>
+
+</mapper>
