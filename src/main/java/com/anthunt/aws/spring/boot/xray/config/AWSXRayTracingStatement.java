@@ -3,14 +3,12 @@ package com.anthunt.aws.spring.boot.xray.config;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 import java.lang.reflect.Proxy;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
-import java.sql.ParameterMetaData;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.HashMap;
@@ -20,7 +18,6 @@ import java.util.Optional;
 import com.amazonaws.xray.AWSXRay;
 import com.amazonaws.xray.entities.Namespace;
 import com.amazonaws.xray.entities.Subsegment;
-import com.zaxxer.hikari.pool.HikariProxyPreparedStatement;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,7 +35,7 @@ public class AWSXRayTracingStatement {
     public static Statement decorateStatement(Statement statement) {
         return (Statement) Proxy.newProxyInstance(AWSXRayTracingStatement.class.getClassLoader(),
                 new Class[] { Statement.class },
-                new TracingStatementHandler(statement, null));
+                new TracingStatementHandler(statement));
     }
 
     /**
@@ -52,7 +49,7 @@ public class AWSXRayTracingStatement {
     public static PreparedStatement decoratePreparedStatement(PreparedStatement statement, String sql) {
         return (PreparedStatement) Proxy.newProxyInstance(AWSXRayTracingStatement.class.getClassLoader(),
                 new Class[] { PreparedStatement.class },
-                new TracingStatementHandler(statement, sql));
+                new TracingStatementHandler(statement));
     }
 
     /**
@@ -66,7 +63,7 @@ public class AWSXRayTracingStatement {
     public static CallableStatement decorateCallableStatement(CallableStatement statement, String sql) {
         return (CallableStatement) Proxy.newProxyInstance(AWSXRayTracingStatement.class.getClassLoader(),
                 new Class[] { CallableStatement.class },
-                new TracingStatementHandler(statement, sql));
+                new TracingStatementHandler(statement));
     }
 
     private static class TracingStatementHandler implements InvocationHandler {
@@ -80,17 +77,14 @@ public class AWSXRayTracingStatement {
         private static final String USER = "user";
         private static final String QUERY = "query";
         private static final String METHOD = "method";
-        private static final String PARAMS = "parameters";
         private static final String DRIVER_VERSION = "driver_version";
         private static final String DATABASE_TYPE = "database_type";
         private static final String DATABASE_VERSION = "database_version";
 
         private final Statement delegate;
-        private final String sql;
 
-        TracingStatementHandler(Statement statement, String sql) {
+        TracingStatementHandler(Statement statement) {
             this.delegate = statement;
-            this.sql = sql;
         }
 
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -169,7 +163,6 @@ public class AWSXRayTracingStatement {
                 Map<String, Map<String, Object>> metadata = new HashMap<>();
                 Map<String, Object> queryInfo = new HashMap<>();
                 queryInfo.put(QUERY, delegate.toString());
-//                queryInfo.put(PARAMS, Optional.ofNullable(args).orElseGet(()->new Object[0]));
                 queryInfo.put(METHOD, method.getName());
                 metadata.put("queryInfo", queryInfo);
                 subsegment.setMetadata(metadata);
