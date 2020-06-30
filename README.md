@@ -5,5 +5,5 @@
 ## Features
 
 1. Incoming Servlet request tracing with Spring AOP
-2. Outcoming HttpRequest tracing with FeignClient
+2. Outgoing HttpRequest tracing with FeignClient
 3. Database Query tracing with HikariCP
