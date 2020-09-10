@@ -5,6 +5,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a9bc01280e9f438e9f159d0ce0414db4)](https://app.codacy.com/manual/anthunt01/spring-boot-xray-demo?utm_source=github.com&utm_medium=referral&utm_content=anthunt/spring-boot-xray-demo&utm_campaign=Badge_Grade_Settings)
 [![Build Status](https://travis-ci.org/anthunt/spring-boot-xray-demo.svg?branch=master)](https://travis-ci.org/anthunt/spring-boot-xray-demo)
 ![Maven Package](https://github.com/anthunt/spring-boot-xray-demo/workflows/Maven%20Package/badge.svg?branch=master)
+![Java CI with Maven](https://github.com/anthunt/spring-boot-xray-demo/workflows/Java%20CI%20with%20Maven/badge.svg)
 
 ![Screenshot of the AWS X-Ray Trace console](/awsxray-snapshot.png?raw=true)
 
