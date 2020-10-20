@@ -1,4 +1,4 @@
-# spring-boot-xray-demo for AWS XRay
+# spring-boot-aws-xray-sample for AWS XRay
 [![Java](https://img.shields.io/badge/language-Java-red.svg)](#)
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE.txt)
 [![Gitpod](https://img.shields.io/badge/build-Gitpod-green.svg)](https://gitpod.io/#https://github.com/anthunt/AWS2Terraform)
