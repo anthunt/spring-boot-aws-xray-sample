@@ -3,7 +3,7 @@
 [![Java](https://img.shields.io/badge/language-Java-red.svg)](#)
 [![License](https://img.shields.io/badge/license-Apache%202-blue.svg)](LICENSE.txt)
 [![Gitpod](https://img.shields.io/badge/build-Gitpod-green.svg)](https://gitpod.io/#https://github.com/anthunt/AWS2Terraform)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a9bc01280e9f438e9f159d0ce0414db4)](https://app.codacy.com/manual/anthunt01/spring-boot-xray-demo?utm_source=github.com&utm_medium=referral&utm_content=anthunt/spring-boot-xray-demo&utm_campaign=Badge_Grade_Settings)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6e06125002e149cd8bca7e7a24e76ee6)](https://www.codacy.com/gh/anthunt/spring-boot-aws-xray-sample/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=anthunt/spring-boot-aws-xray-sample&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.org/anthunt/spring-boot-xray-demo.svg?branch=master)](https://travis-ci.org/anthunt/spring-boot-xray-demo)
 ![Maven Package](https://github.com/anthunt/spring-boot-xray-demo/workflows/Maven%20Package/badge.svg?branch=master)
 ![Java CI with Maven](https://github.com/anthunt/spring-boot-xray-demo/workflows/Java%20CI%20with%20Maven/badge.svg)
