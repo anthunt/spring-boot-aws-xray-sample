@@ -8,7 +8,7 @@
 ![Maven Package](https://github.com/anthunt/spring-boot-xray-demo/workflows/Maven%20Package/badge.svg?branch=master)
 ![Java CI with Maven](https://github.com/anthunt/spring-boot-xray-demo/workflows/Java%20CI%20with%20Maven/badge.svg)
 
-![Screenshot of the AWS X-Ray Trace console](/awsxray-snapshot.png?raw=true)
+![Screenshot of the AWS X-Ray Trace console](https://github.com/anthunt/spring-boot-aws-xray-sample/raw/master/awsxray-snapshot.png?raw=true)
 
 ## Features
 
