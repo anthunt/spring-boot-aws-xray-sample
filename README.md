@@ -8,6 +8,13 @@
 ![Maven Package](https://github.com/anthunt/spring-boot-xray-demo/workflows/Maven%20Package/badge.svg?branch=master)
 ![Java CI with Maven](https://github.com/anthunt/spring-boot-xray-demo/workflows/Java%20CI%20with%20Maven/badge.svg)
 
+As the transition to MSA-oriented application services accelerates, it becomes more important to track complex invocation relationships between microservices.
+AWS provides the X-Ray service as a service for tracking and managing the call relationships between many of these services.
+This service integrates with AWS's API Gateway service, making it easy to monitor the call relationship to service requests and the performance of your application calls.
+However, it does require a bit of coding to track execution within the application.
+It is therefore open source providing sample code for easy integration of X-Ray tracing into SpringBoot applications.
+This feature leverages SpringBoot's AOP capabilities to provide an easy way to apply X-Ray without affecting existing application code.
+
 ![Screenshot of the AWS X-Ray Trace console](https://github.com/anthunt/spring-boot-aws-xray-sample/raw/master/awsxray-snapshot.png?raw=true)
 
 ## Features
