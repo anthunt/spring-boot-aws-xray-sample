@@ -15,6 +15,7 @@ However, it does require a bit of coding to track execution within the applicati
 It is therefore open source providing sample code for easy integration of X-Ray tracing into SpringBoot applications.
 This feature leverages SpringBoot's AOP capabilities to provide an easy way to apply X-Ray without affecting existing application code.
 
+## AWS X-Ray Screenshot
 ![Screenshot of the AWS X-Ray Trace console](https://github.com/anthunt/spring-boot-aws-xray-sample/raw/master/awsxray-snapshot.png?raw=true)
 
 ## Features
@@ -22,3 +23,28 @@ This feature leverages SpringBoot's AOP capabilities to provide an easy way to a
 1. Incoming Servlet request tracing with Spring AOP
 2. Outgoing HttpRequest tracing with FeignClient
 3. Database Query tracing with HikariCP
+
+## Description
+
+### config/AWSXRayConfig.java
+- Configure SpringBoot Project Preferences for AWS X-Ray
+
+### config/AWSXRayInspector.java
+- Configuration of trace function for bean execution in SpringBoot with AOP
+- Bean scope setting for tracking by Annotation setting
+
+```
+@Pointcut("@within(com.amazonaws.xray.spring.aop.XRayEnabled) && (bean(*Controller) || bean(*Service) || bean(*Client) || bean(*Mapper))")  
+```
+
+### config/AWSXRayFeignClientConfig.java
+- Configure tracing function for FeignClient execution for outbound request tracing
+
+### config/AWSXRayHikariConfig.java
+- Set up integration with HikariCP for tracking database calls
+
+### config/AWSXRayTracingConnection.java, AWSXRayTracingDataSource.java, AWSXRayTracingStatement.java
+- Configure tracking function for query invocation by providing wrapping function for JDBC configuration objects
+
+
+
