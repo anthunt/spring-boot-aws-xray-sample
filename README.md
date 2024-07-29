@@ -27,24 +27,24 @@ This feature leverages SpringBoot's AOP capabilities to provide an easy way to a
 ## Description
 
 ### config/AWSXRayConfig.java
-- Configure SpringBoot Project Preferences for AWS X-Ray
+  - Configure SpringBoot Project Preferences for AWS X-Ray
 
 ### config/AWSXRayInspector.java
-- Configuration of trace function for bean execution in SpringBoot with AOP
-- Bean scope setting for tracking by Annotation setting
+  - Configuration of trace function for bean execution in SpringBoot with AOP
+  - Bean scope setting for tracking by Annotation setting
 
 ```
 @Pointcut("@within(com.amazonaws.xray.spring.aop.XRayEnabled) && (bean(*Controller) || bean(*Service) || bean(*Client) || bean(*Mapper))")  
 ```
 
 ### config/AWSXRayFeignClientConfig.java
-- Configure tracing function for FeignClient execution for outbound request tracing
+  - Configure tracing function for FeignClient execution for outbound request tracing
 
 ### config/AWSXRayHikariConfig.java
-- Set up integration with HikariCP for tracking database calls
+  - Set up integration with HikariCP for tracking database calls
 
 ### config/AWSXRayTracingConnection.java, AWSXRayTracingDataSource.java, AWSXRayTracingStatement.java
-- Configure tracking function for query invocation by providing wrapping function for JDBC configuration objects
+  - Configure tracking function for query invocation by providing wrapping function for JDBC configuration objects
 
 
 
