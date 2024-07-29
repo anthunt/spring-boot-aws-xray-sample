@@ -103,23 +103,21 @@ public class AWSXRayTracingStatement {
             try {
                 // execute the query "wrapped" in a XRay Subsegment
                 return method.invoke(delegate, args);
-            } catch (Throwable t) {
-                if (t instanceof InvocationTargetException) {
-                    // the reflection may wrap the actual error with an InvocationTargetException.
-                    // we want to use the root cause to make the instrumentation seamless
-                    InvocationTargetException ite = (InvocationTargetException) t;
-                    if (ite.getTargetException() != null) {
-                        subsegment.addException(ite.getTargetException());
-                        throw ite.getTargetException();
-                    }
-                    if (ite.getCause() != null) {
-                        subsegment.addException(ite.getCause());
-                        throw ite.getCause();
-                    }
-                    subsegment.addException(ite);
-                    throw ite;
+            } catch (InvocationTargetException t) {
+                // the reflection may wrap the actual error with an InvocationTargetException.
+                // we want to use the root cause to make the instrumentation seamless
+                InvocationTargetException ite = t;
+                if (ite.getTargetException() != null) {
+                    subsegment.addException(ite.getTargetException());
+                    throw ite.getTargetException();
                 }
-
+                if (ite.getCause() != null) {
+                    subsegment.addException(ite.getCause());
+                    throw ite.getCause();
+                }
+                subsegment.addException(ite);
+                throw ite;
+            } catch (Throwable t) {
                 subsegment.addException(t);
                 throw t;
             } finally {
